@@ -1,26 +1,45 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Avatar, BottomNavigation, BottomNavigationAction, List, ListItem, ListItemAvatar, ListItemText, ListSubheader } from "@material-ui/core";
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
-import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
-import FlashOnOutlinedIcon from '@material-ui/icons/FlashOnOutlined';
-import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import { Avatar, List, ListItem, ListItemAvatar, ListItemText, ListSubheader } from "@material-ui/core";
 import ImageIcon from '@material-ui/icons/Image';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Header from "./Shared/Header";
 
-const useStyles = makeStyles((theme) => {
-  console.log(theme);
-  return ({
-    root: {
-      width: '100%'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  achievement: {
+    width: '100%',
+    overflow: 'auto',
+    paddingBottom: '0px',
+    paddingTop: '0px',
+    "& .MuiListItemText-primary": {
+      color: theme.palette.primary.main,
+      fontWeight: '600',
+      fontSize: '1.1rem'
     },
-    workoutList: {
-      height: '200px',
-      width: '100%',
-      overflow: 'auto'
-    }
-  })}
+    "& .MuiListItemText-secondary": {
+      color: theme.palette.secondary.main,
+      fontWeight: '500',
+      fontSize: '1.1rem'
+    },
+    
+  },
+  subheader: {
+    fontSize: '1rem',
+    fontWeight: '800',
+    textTransform: 'uppercase',
+    background: theme.palette.background.grey,
+    lineHeight: '36px',
+    borderRadius: '10px'
+  },
+  ul: {
+    padding: '0 15px'
+  }
+})
 );
 
 export default function Achievement() {
@@ -65,12 +84,12 @@ export default function Achievement() {
   ];
   return (
     <div className={classes.root}>
-      <Header title="Your Workout Plan"/>
-      <List className={classes.workoutList} subheader={<li />}>
+      <Header title="Your Achievements"/>
+      <List className={classes.achievement} subheader={<li />}>
         {achievementData.map((monthData, index) => (
           <li key={`achievement-${index}`} className={classes.listSection}>
             <ul className={classes.ul}>
-              <ListSubheader>{monthData.timeText}</ListSubheader>
+              <ListSubheader color="primary" className={classes.subheader}>{monthData.timeText}</ListSubheader>
               {monthData.achievements.map((achievement, detailIndex) => (
                 <ListItem key={`achievement-detail-${index}-${detailIndex}`}>
                   <ListItemText primary={achievement.title} secondary={achievement.time} />

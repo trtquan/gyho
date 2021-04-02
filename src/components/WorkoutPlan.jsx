@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
     },
     ul: {
       padding: '0 15px'
+    },
+    navBar: {
+      marginTop: 'auto'
     }
   })
 );
@@ -89,7 +92,7 @@ export default function WorkoutPlan() {
           </li>
         ))}
       </List>
-      <BottomNavigation value={currentNav} onChange={handleChange}>
+      <BottomNavigation value={currentNav} onChange={handleChange} className={classes.navBar}>
         <BottomNavigationAction value="recents" icon={<PersonOutlineOutlinedIcon />} />
         <BottomNavigationAction value="favorites" icon={<SearchOutlinedIcon />} />
         <BottomNavigationAction value="nearby" icon={<FlashOnOutlinedIcon />} />
