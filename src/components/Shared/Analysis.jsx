@@ -72,8 +72,7 @@ export default function Analysis({ title }) {
               {analysis.data.map((item, itemIndex) => (
                 <ListItem className={classes.items} key={`workout-item-${index}-${itemIndex}`}>
                   {item.icon}
-                  <Typography className={classes.info}>{item.info}</Typography>
-                  <Typography className={classes.data}>{item.data}</Typography>
+                  <ListItemText primary={item.info} secondary={item.data} />
                 </ListItem>
               ))}
             </ul>
