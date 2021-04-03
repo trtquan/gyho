@@ -1,16 +1,34 @@
+import { createMuiTheme } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
 import React from "react";
-import Alert from "@material-ui/lab/Alert";
-import ErrorOutlineOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
 import "./App.css";
-import Caution from "./components/Shared/Caution";
-import KaoAccordion from "./components/Shared/KaoAccordion";
-import KaoButton from "./components/Shared/KaoButton";
+import WorkoutPlan from "./components/WorkoutPlan";
+
+const masterTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#050607'
+    },
+    secondary: {
+      main: '#e86514'
+    },
+    background: {
+      grey: '#dbd9d5'
+    }
+  },
+  typography: {
+    h1: {
+      color: '#050607'
+    }
+  }
+})
 
 function App() {
   return (
     <>
-      <KaoAccordion summary={"quan"} children={<Caution message={"test"} />} />
-      <KaoButton />
+      <ThemeProvider theme={masterTheme}>
+        <WorkoutPlan/>
+      </ThemeProvider>
     </>
   );
 }
