@@ -21,12 +21,12 @@ const useStyles = makeStyles(() => ({
   list: {
     display: 'flex',
     flexDirection: 'row',
-    padding: 0,
+    padding: '0px 0px',
     justifyContent: 'space-evenly',
     "& .MuiListItemText-primary": {
       color: '#fff',
       fontWeight: '500',
-      fontSize: '1.1rem'
+      fontSize: '1rem'
     },
     "& .MuiListItemText-secondary": {
       color: '#fff',
@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Analysis({ title }) {
+export default function Analysis() {
   const classes = useStyles();
 
   const analysisData = [
