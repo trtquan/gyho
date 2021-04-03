@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, List, ListItem, ListSubheader, makeStyles, Typography } from '@material-ui/core';
+import { Box, List, ListItem, ListItemText, ListSubheader, makeStyles } from '@material-ui/core';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import TimerIcon from '@material-ui/icons/Timer';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
@@ -7,6 +7,7 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#FFF',
+    width: '100%',
     boxShadow: 'none'
   },
   title: {
@@ -21,7 +22,17 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'row',
     padding: 0,
-    justifyContent: 'center'
+    justifyContent: 'space-evenly',
+    "& .MuiListItemText-primary": {
+      color: '#fff',
+      fontWeight: '500',
+      fontSize: '1.1rem'
+    },
+    "& .MuiListItemText-secondary": {
+      color: '#fff',
+      fontWeight: '600',
+      fontSize: '1.1rem'
+    }, 
   },
   items: {
     justifyContent: 'center'
@@ -29,10 +40,6 @@ const useStyles = makeStyles(() => ({
   icon: {
       fontSize: "40px"
   },
-  data: {
-      fontSize: "20px",
-      fontWeight: "bolder"
-  }
 }));
 
 export default function Analysis({ title }) {
