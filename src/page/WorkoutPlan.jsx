@@ -5,7 +5,9 @@ import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined'
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import FlashOnOutlinedIcon from '@material-ui/icons/FlashOnOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import Header from "./Shared/Header";
+import Header from "../components/Shared/Header";
+import { connect } from "react-redux";
+import { WorkoutPlanActionTypes } from "../state/ducks/WorkoutPlan/WorkoutPlan.actions";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,38 +50,24 @@ const useStyles = makeStyles((theme) => ({
   })
 );
 
-export default function WorkoutPlan() {
+function WorkoutPlan(props) {
   const classes = useStyles();
-  const workoutData = [
-    {
-      days: [
-        { exercise: 'Workout + Cardio' },
-        { exercise: 'Weight Lifing' }
-      ]
-    },
-    {
-      days: [
-        { exercise: 'Weight Lifing' },
-        { exercise: 'Cardio + Crossfit' }
-      ]
-    },
-    {
-      days: [
-        { exercise: 'Cardio + Weight Lifing' },
-        { exercise: 'Cardio + Crossfit' }
-      ]
-    }
-  ];
+  const { workoutPlanData, fetchWorkoutPlanData } = props;
 
   const [currentNav, setNav] = React.useState('recents');
   const handleChange = (event, newValue) => {
     setNav(newValue);
   };
+
+  React.useEffect(() => {
+    fetchWorkoutPlanData();
+  }, [fetchWorkoutPlanData]);
+
   return (
     <div className={classes.root}>
       <Header title="Your Workout Plan"/>
       <List className={classes.workoutList}>
-        {workoutData.map((week, index) => (
+        {workoutPlanData.data.map((week, index) => (
           <li key={`workout-${index}`} className={classes.listSection}>
             <ul className={classes.ul}>
               <ListSubheader color="primary" className={classes.subheader}>{`Week ${index + 1}`}</ListSubheader>
@@ -101,3 +89,17 @@ export default function WorkoutPlan() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    workoutPlanData: state.workoutPlan
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchWorkoutPlanData: () => dispatch({ type: WorkoutPlanActionTypes.FETCH_WORKOUTPLAN_REQUEST })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutPlan);

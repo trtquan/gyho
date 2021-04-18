@@ -1,9 +1,14 @@
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import React from "react";
+import { Provider } from "react-redux";
 import "./App.css";
-import WorkoutPlan from "./components/WorkoutPlan";
+import { InitialState } from "./config/InitialState";
+import WorkoutPlan from "./page/WorkoutPlan";
+import configureStore from "./state";
 
+const initialState = InitialState;
+const store = configureStore(initialState);
 const masterTheme = createMuiTheme({
   palette: {
     primary: {
@@ -25,11 +30,11 @@ const masterTheme = createMuiTheme({
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <ThemeProvider theme={masterTheme}>
         <WorkoutPlan/>
       </ThemeProvider>
-    </>
+    </Provider>
   );
 }
 
